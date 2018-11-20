@@ -3,26 +3,76 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('user_model');
+		$this->load->helper(array('url'));
+		$this->load->library(array('form_validation'));
+	}
+
 	public function index(){
 		$this->load->view('user_auth/login');
 	}
 
 	public function registrasi(){
 		$this->load->view('user_auth/registrasi');
+	}
+
+	public function tambah_user(){
+		// oop way
+		// $username = $this->input->post('username');
+		// $password = $this->input->post('password');
+		// $password_confirm = $this->input->post('password_confirm');
+
+		// procedural way
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$password_confirm = $_POST['password_confirm'];
+		
+		$validasi = array(
+			array(
+				'field' => 'username',
+				'label' => 'Username',
+				'rules' => 'trim|required|min_length[3]|max_length[25]',
+				'errors' => array(
+					'required' => "Kolom ini harus diisi",
+					'min_length' => "Panjang Minimal Username Harus 3 Karakter",
+					'max_length' => "Panjang Maksimal Username Harus 25 Karakter"
+				)
+			),
+			array(
+				'field' => 'password',
+				'label'	=> 'Password',
+				'rules' => 'required|min_length[6]',
+				'errors' => array(
+					'required' => "Kolom Ini Harus Diisi",
+					'min_length' => "Panjang Password Minimal 6 Karakter"
+				)
+			),
+			array(
+				'field' => 'password_confirm',
+				'label'	=> 'Konfirmasi Password',
+				'rules' => 'required|min_length[6]|matches[password]',
+				'errors' => array(
+					'required' => "Kolom Ini Harus Diisi",
+					'min_length' => "Panjang Konfirmasi Password Minimal 6 Karakter",
+					'matches' => "Konfirmasi Password Tidak Sama Dengan Password"
+				)
+			)
+		);
+
+		$this->form_validation->set_rules($validasi);
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('user_auth/registrasi');
+		} else {
+			$data = array(
+				'username' => $username,
+				'password' => md5($password)
+			);
+			$this->user_model->create_user($data);
+			redirect('auth/login');
+		}
+
 	}
 }
