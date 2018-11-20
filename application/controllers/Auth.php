@@ -19,12 +19,6 @@ class Auth extends CI_Controller {
 	}
 
 	public function tambah_user(){
-		// oop way
-		// $username = $this->input->post('username');
-		// $password = $this->input->post('password');
-		// $password_confirm = $this->input->post('password_confirm');
-
-		// procedural way
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$password_confirm = $_POST['password_confirm'];
@@ -74,5 +68,22 @@ class Auth extends CI_Controller {
 			redirect('auth/login');
 		}
 
+	}
+
+	public function user_login(){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+		$user_data = array(
+			'username' => $username,
+			'password' => md5($password)
+		);
+		$result = $this->user_model->cek_login($user_data);
+		$user_exist = $result->num_rows();
+		if($user_exist > 0) {
+			echo "ada";
+		} else {
+			echo md5($password);
+		}
 	}
 }
