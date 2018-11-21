@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2018 at 01:00 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 5.6.38
+-- Waktu pembuatan: 21 Nov 2018 pada 03.15
+-- Versi server: 10.1.34-MariaDB
+-- Versi PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kabupaten`
+-- Struktur dari tabel `kabupaten`
 --
 
 CREATE TABLE `kabupaten` (
@@ -37,7 +37,7 @@ CREATE TABLE `kabupaten` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kendaraan`
+-- Struktur dari tabel `kendaraan`
 --
 
 CREATE TABLE `kendaraan` (
@@ -49,7 +49,7 @@ CREATE TABLE `kendaraan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kota`
+-- Struktur dari tabel `kota`
 --
 
 CREATE TABLE `kota` (
@@ -61,7 +61,7 @@ CREATE TABLE `kota` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lokasi`
+-- Struktur dari tabel `lokasi`
 --
 
 CREATE TABLE `lokasi` (
@@ -74,7 +74,7 @@ CREATE TABLE `lokasi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mall`
+-- Struktur dari tabel `mall`
 --
 
 CREATE TABLE `mall` (
@@ -88,7 +88,7 @@ CREATE TABLE `mall` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinsi`
+-- Struktur dari tabel `provinsi`
 --
 
 CREATE TABLE `provinsi` (
@@ -99,7 +99,7 @@ CREATE TABLE `provinsi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -120,54 +120,63 @@ CREATE TABLE `user` (
   `username` varchar(40) NOT NULL,
   `password` varchar(32) NOT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `tanggal_gabung` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tanggal_gabung` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `level` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `status`, `tanggal_gabung`, `level`) VALUES
+(1, 'ilhamfi', 'efe6398127928f1b2e9ef3207fb82663', 'A', '2018-11-21 01:29:27', NULL);
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `kabupaten`
+-- Indeks untuk tabel `kabupaten`
 --
 ALTER TABLE `kabupaten`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_provinsi` (`id_provinsi`);
 
 --
--- Indexes for table `kendaraan`
+-- Indeks untuk tabel `kendaraan`
 --
 ALTER TABLE `kendaraan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kota`
+-- Indeks untuk tabel `kota`
 --
 ALTER TABLE `kota`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kabupaten` (`id_kabupaten`);
 
 --
--- Indexes for table `lokasi`
+-- Indeks untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kota` (`id_kota`);
 
 --
--- Indexes for table `mall`
+-- Indeks untuk tabel `mall`
 --
 ALTER TABLE `mall`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_lokasi` (`id_lokasi`);
 
 --
--- Indexes for table `provinsi`
+-- Indeks untuk tabel `provinsi`
 --
 ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`),
@@ -175,97 +184,97 @@ ALTER TABLE `transaksi`
   ADD KEY `id_kendaraan` (`id_kendaraan`);
 
 --
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `kabupaten`
---
-ALTER TABLE `kabupaten`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kendaraan`
---
-ALTER TABLE `kendaraan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kota`
---
-ALTER TABLE `kota`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `lokasi`
---
-ALTER TABLE `lokasi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `mall`
---
-ALTER TABLE `mall`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `provinsi`
---
-ALTER TABLE `provinsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
-  
---
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- Constraints for table `kabupaten`
+-- AUTO_INCREMENT untuk tabel `kabupaten`
 --
 ALTER TABLE `kabupaten`
-  ADD CONSTRAINT `kabupaten_ibfk_1` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id`);
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `kota`
+-- AUTO_INCREMENT untuk tabel `kendaraan`
+--
+ALTER TABLE `kendaraan`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `kota`
 --
 ALTER TABLE `kota`
-  ADD CONSTRAINT `kota_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id`);
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `lokasi`
+-- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
-  ADD CONSTRAINT `lokasi_ibfk_1` FOREIGN KEY (`id_kota`) REFERENCES `kota` (`id`);
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `mall`
+-- AUTO_INCREMENT untuk tabel `mall`
 --
 ALTER TABLE `mall`
-  ADD CONSTRAINT `mall_ibfk_1` FOREIGN KEY (`id_lokasi`) REFERENCES `lokasi` (`id`);
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `provinsi`
+--
+ALTER TABLE `provinsi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_kendaraan`) REFERENCES `kendaraan` (`id`),
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_mall`) REFERENCES `mall` (`id`);
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `kabupaten`
+--
+ALTER TABLE `kabupaten`
+  ADD CONSTRAINT `kabupaten_ibfk_1` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `kota`
+--
+ALTER TABLE `kota`
+  ADD CONSTRAINT `kota_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `lokasi`
+--
+ALTER TABLE `lokasi`
+  ADD CONSTRAINT `lokasi_ibfk_1` FOREIGN KEY (`id_kota`) REFERENCES `kota` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `mall`
+--
+ALTER TABLE `mall`
+  ADD CONSTRAINT `mall_ibfk_1` FOREIGN KEY (`id_lokasi`) REFERENCES `lokasi` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_kendaraan`) REFERENCES `kendaraan` (`id`),
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_mall`) REFERENCES `mall` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -65,7 +65,7 @@ class Auth extends CI_Controller {
 				'password' => md5($password)
 			);
 			$this->user_model->create_user($data);
-			redirect('auth/login');
+			redirect('auth/index');
 		}
 
 	}
@@ -81,6 +81,12 @@ class Auth extends CI_Controller {
 		$result = $this->user_model->cek_login($user_data);
 		$user_exist = $result->num_rows();
 		if($user_exist > 0) {
+			$data = $result->row();
+			$data_session = array(
+				'id' => $data->id,
+				'username' => $data->username
+			);
+			$this->session->set_userdata($data_session);
 			redirect('beranda/index');
 		} else {
 			redirect('auth/index');
