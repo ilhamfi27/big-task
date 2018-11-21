@@ -81,9 +81,9 @@ class Auth extends CI_Controller {
 		$result = $this->user_model->cek_login($user_data);
 		$user_exist = $result->num_rows();
 		if($user_exist > 0) {
-			echo "ada";
+			redirect('beranda/index');
 		} else {
-			echo md5($password);
+			redirect('auth/index');
 		}
 	}
 }

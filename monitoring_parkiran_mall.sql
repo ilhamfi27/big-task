@@ -109,6 +109,19 @@ CREATE TABLE `transaksi` (
   `tanggal_waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(5) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `status` varchar(1) NOT NULL DEFAULT 'A',
+  `tanggal_gabung` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Indexes for dumped tables
 --
@@ -206,6 +219,12 @@ ALTER TABLE `provinsi`
 --
 ALTER TABLE `transaksi`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  
+--
+-- Indeks untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Constraints for dumped tables
@@ -241,6 +260,12 @@ ALTER TABLE `mall`
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_kendaraan`) REFERENCES `kendaraan` (`id`),
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_mall`) REFERENCES `mall` (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
