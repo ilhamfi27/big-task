@@ -6,8 +6,7 @@ class User_model extends CI_Model{
     }
 
     public function create_user($data_user){
-        $this->db->insert('user', $data_user);
-        // insert into () values ();
+        return $this->db->insert('user', $data_user);
     }
 
     public function cek_login($data_user){
