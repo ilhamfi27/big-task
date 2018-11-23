@@ -67,7 +67,6 @@ class Auth extends CI_Controller {
 			$this->user_model->create_user($data);
 			redirect('auth/index');
 		}
-
 	}
 
 	public function user_login(){
