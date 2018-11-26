@@ -91,4 +91,13 @@ class Auth extends CI_Controller {
 			redirect('auth/index');
 		}
 	}
+
+	public function logout(){
+		$data_session = array(
+			'id' => $data->id,
+			'username' => $data->username
+		);
+		$this->session->unset_userdata($data_session);
+		redirect('auth/index');
+	}
 }
