@@ -30,25 +30,24 @@
 							  <a href="<?php echo site_url('beranda/index'); ?>" class="navbar-brand logo">b</a>
 							</div>
 							<nav class="collapse navbar-collapse" role="navigation">
-								<form class="navbar-form navbar-left">
-									<div class="input-group input-group-sm" style="max-width:360px;">
-										<input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
-										<div class="input-group-btn">
-										<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-										</div>
-									</div>
-								</form>
-								<ul class="nav navbar-nav navbar-right">
-									<li class="dropdown" style="margin-right: 12px;">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
-										<ul class="dropdown-menu">
-											<li><a href="">More</a></li>
-											<li><a href="">More</a></li>
-											<li><a href="">More</a></li>
-											<li><a href="">More</a></li>
-											<li><a href="">More</a></li>
-										</ul>
-									</li>
+							<form class="navbar-form navbar-left">
+								<div class="input-group input-group-sm" style="max-width:360px;">
+								  <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+								  <div class="input-group-btn">
+									<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+								  </div>
+								</div>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#"><?php echo $_SESSION['username'];?></a></li>
+							  <li class="dropdown" style="margin-right: 12px;">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="glyphicon glyphicon-user"></i>
+								</a>
+								<ul class="dropdown-menu">
+								  <li><a href="<?php echo site_url('user/profile'); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+								  <li><a href=""><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+								  <li><a href=""><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
 								</ul>
 							</nav>
 						</div>
@@ -63,13 +62,17 @@
 
 											</div>
 										</div>
-									<div class="col-sm-7">
-										
 									</div>
-					      </div><!--/row-->
+									<div class="col-sm-7">
+										<div class="panel panel-default">
+											<div class="panel-body">
+
+											</div>
+										</div>
+									</div>
+								</div><!-- /padding -->
 							</div>
-						</div><!-- /padding -->
-					</div>
+						</div>
 					<!-- /main -->
 				  
 				</div>
