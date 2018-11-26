@@ -39,14 +39,15 @@
 								</div>
 							</form>
 							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#"><?php echo $_SESSION['username'];?></a></li>
 							  <li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="glyphicon glyphicon-user"></i>
+								</a>
 								<ul class="dropdown-menu">
-								  <li><a href="">More</a></li>
-								  <li><a href="">More</a></li>
-								  <li><a href="">More</a></li>
-								  <li><a href="">More</a></li>
-								  <li><a href="">More</a></li>
+								  <li><a href="<?php echo site_url('user/profile'); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+								  <li><a href=""><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+								  <li><a href=""><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
 								</ul>
 							  </li>
 							</ul>
@@ -63,13 +64,17 @@
 
 											</div>
 										</div>
-									<div class="col-sm-7">
-										
 									</div>
-					      </div><!--/row-->
+									<div class="col-sm-7">
+										<div class="panel panel-default">
+											<div class="panel-body">
+
+											</div>
+										</div>
+									</div>
+								</div><!-- /padding -->
 							</div>
-						</div><!-- /padding -->
-					</div>
+						</div>
 					<!-- /main -->
 				  
 				</div>
