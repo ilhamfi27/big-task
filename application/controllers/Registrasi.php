@@ -7,6 +7,8 @@ class Registrasi extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model','user');
 		$this->load->model('biodata_customer_model','biodata_customer');
+		$this->load->model('lokasi_model','lokasi');
+		$this->load->model('data_mall_model','mall');
 		$this->load->helper(array('url'));
 		$this->load->library(array('form_validation'));
     }
@@ -28,7 +30,8 @@ class Registrasi extends CI_Controller {
 	}
 	
 	public function regis_data_mall(){
-        $this->load->view('registrasi/regis_data_mall');
+		$data['provinsi'] = $this->lokasi->all_provinsi()->result();
+        $this->load->view('registrasi/regis_data_mall', $data);
 	}
 
 	public function tambah_user(){
@@ -103,6 +106,58 @@ class Registrasi extends CI_Controller {
 					$this->load->view('registrasi/regis_mall');
 				}
             }
+		}
+	}
+
+	public function tambah_data_mall(){
+		$nama			= $_POST['nama'];
+		$id_kelurahan	= $_POST['id_kelurahan'];
+		$alamat			= $_POST['alamat'];
+		$kode_pos		= $_POST['kode_pos'];
+		$tahun_berdiri	= $_POST['tahun_berdiri'];
+		$no_telp		= $_POST['no_telp'];
+		$fax			= $_POST['fax'];
+		$username		= $_POST['username'];
+		$status			= $_POST['status'];
+
+		$data_lokasi = array(
+			'id_kelurahan' => $id_kelurahan,
+			'alamat' => $alamat,
+			'kode_pos' => $kode_pos
+		);
+
+		$success = $this->lokasi->create($data_lokasi);
+
+		$where_lokasi = array(
+			'id_kelurahan' => $id_kelurahan,
+			'alamat' => $alamat,
+			'kode_pos' => $kode_pos
+		);
+
+		$id_lokasi = $this->lokasi->get_lokasi($where_lokasi)
+					->row()
+					->id;
+
+		$where_user = array(
+			'username' => $username, 
+			'status' => $status
+		);
+
+		$id_user = $this->user->get_user_id($where_user)
+					->row()
+					->id;
+
+		$data_mall = array(
+			'nama' => $nama,
+			'tahun_berdiri' => $tahun_berdiri,
+			'no_telp' => $no_telp,
+			'fax' => $fax,
+			'id_lokasi' => $id_lokasi,
+			'id_user' => $id_user
+		);
+		$success = $this->mall->create($data_mall);
+		if ($success > 0) {
+			redirect('auth/login');
 		}
 	}
 }

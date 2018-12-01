@@ -24,34 +24,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 				<div class="form-group">
                     <label>Nama Mall</label>
-                    <input type="text" name="" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Nama Mall" required>
+                    <input type="text" name="nama" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Nama Mall" required>
                 </div>
 				<div class="form-group">
                     <label>Provinsi</label>
-                    <select name="" class="form-control" placeholder="Provinsi" required>
+                    <select name="id_provinsi" class="form-control" id="dropdown-provinsi" data-url="<?php echo site_url('lokasi/ajax_get_kab_kota'); ?>" placeholder="Provinsi" required>
                         <option value="">-- Provinsi --</option>
-                        <option value="x">X</option>
+                        <?php foreach($provinsi as $row): ?>
+                        <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 				<div class="form-group">
                     <label>Kabupaten/Kota</label>
-                    <select name="" class="form-control" placeholder="Kabupaten/Kota" required>
+                    <select name="id_kab-kota" class="form-control" id="dropdown-kab-kota" data-url="<?php echo site_url('lokasi/ajax_get_kecamatan'); ?>" placeholder="Kabupaten/Kota" required>
                         <option value="">-- Kabupaten/Kota --</option>
-                        <option value="x">X</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Kecamatan</label>
-                    <select name="" class="form-control" placeholder="Kecamatan" required>
+                    <select name="id_kecamatan" class="form-control" id="dropdown-kecamatan" data-url="<?php echo site_url('lokasi/ajax_get_kelurahan'); ?>" placeholder="Kecamatan" required>
                         <option value="">-- Kecamatan --</option>
-                        <option value="x">X</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Kelurahan</label>
-                    <select name="" class="form-control" placeholder="Kelurahan" required>
+                    <select name="id_kelurahan" class="form-control" id="dropdown-kelurahan" placeholder="Kelurahan" required>
                         <option value="">-- Kelurahan --</option>
-                        <option value="x">X</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -60,19 +59,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 				<div class="form-group">
                     <label>Kode Pos</label>
-                    <input type="text" name="" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Kode Pos" required>
+                    <input type="text" name="kode_pos" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Kode Pos" required>
                 </div>
 				<div class="form-group">
                     <label>Tahun Berdiri</label>
-                    <input type="text" name="" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Tahun Berdiri" required>
+                    <input type="text" name="tahun_berdiri" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Tahun Berdiri" required>
                 </div>
 				<div class="form-group">
                     <label>Nomor Telp</label>
-                    <input type="text" name="" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Nomor Telp" required>
+                    <input type="text" name="no_telp" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Nomor Telp" required>
                 </div>
 				<div class="form-group">
                     <label>Fax</label>
-                    <input type="text" name="" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Fax" required>
+                    <input type="text" name="fax" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Fax" required>
                 </div>
 				<input type="hidden" name="username" value="<?php echo $_SESSION['session_username']; ?>">
 				<input type="hidden" name="status" value="<?php echo $_SESSION['session_status']; ?>">
@@ -84,6 +83,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script src="<?php echo base_url('vendor/jquery/jquery-3.3.1.js'); ?>"></script>
 	<script src="<?php echo base_url('vendor/bootstrap/js/bootstrap.min.js'); ?>"></script>
-
+    <script>
+        $(document).ready(function(){
+            $('#dropdown-provinsi').change(function(){
+                var id_prov = $(this).val();
+                var url_destination = $('#dropdown-provinsi').data('url');
+                $.ajax({
+                    type: 'post',
+                    url: url_destination,
+                    data: 'id_prov=' + id_prov,
+                    success: function(data){
+                        $.each($.parseJSON(data), function(key,value){
+                            $('#dropdown-kab-kota').append("<option value=\""+value.id+"\">"+ value.name +"</option>");
+                        });
+                    }
+                });
+            });
+            $('#dropdown-kab-kota').change(function(){
+                var id_kab_kota = $(this).val();
+                var url_destination = $('#dropdown-kab-kota').data('url');
+                $.ajax({
+                    type: 'post',
+                    url: url_destination,
+                    data: 'id_kab_kota=' + id_kab_kota,
+                    success: function(data){
+                        $.each($.parseJSON(data), function(key,value){
+                            $('#dropdown-kecamatan').append("<option value=\""+value.id+"\">"+ value.name +"</option>");
+                        });
+                    }
+                });
+            });
+            $('#dropdown-kecamatan').change(function(){
+                var id_kecamatan = $(this).val();
+                var url_destination = $('#dropdown-kecamatan').data('url');
+                $.ajax({
+                    type: 'post',
+                    url: url_destination,
+                    data: 'id_kecamatan=' + id_kecamatan,
+                    success: function(data){
+                        $.each($.parseJSON(data), function(key,value){
+                            $('#dropdown-kelurahan').append("<option value=\""+value.id+"\">"+ value.name +"</option>");
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
