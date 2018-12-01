@@ -47,7 +47,7 @@
 								<ul class="dropdown-menu">
 								  <li><a href="<?php echo site_url('user/profile'); ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 								  <li><a href=""><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
-								  <li><a href=""><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+								  <li><a href="<?php echo site_url('auth/logout'); ?>"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
 								</ul>
 							</nav>
 						</div>
