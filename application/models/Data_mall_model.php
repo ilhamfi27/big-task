@@ -107,7 +107,7 @@ class Data_mall_model extends CI_Model{
                 JOIN kecamatan ON (desa_kelurahan.id_kecamatan = kecamatan.id)
                 JOIN kabupaten_kota ON (kecamatan.id_kabupaten_kota = kabupaten_kota.id)
                 JOIN provinsi ON (kabupaten_kota.id_provinsi = provinsi.id)
-                WHERE id_user = 19
+                WHERE id_user = '".$id_user."'
             )
             OR
             kecamatan.id = (
@@ -120,7 +120,7 @@ class Data_mall_model extends CI_Model{
                 JOIN kecamatan ON (desa_kelurahan.id_kecamatan = kecamatan.id)
                 JOIN kabupaten_kota ON (kecamatan.id_kabupaten_kota = kabupaten_kota.id)
                 JOIN provinsi ON (kabupaten_kota.id_provinsi = provinsi.id)
-                WHERE id_user = 19
+                WHERE id_user = '".$id_user."'
             )";
             return $this->db->query($sql); 
     }

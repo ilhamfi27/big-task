@@ -22,8 +22,7 @@
                     </div>
                     <div class="box-body">
                         <form role="form" action="<?php echo site_url('transaksi/kendaraan_lewat'); ?>" method="post">
-                            <input type="hidden" name="id_mall" value="<?php echo $mall->id; ?>">
-                            <input type="hidden" name="id_gerbang" value="<?php echo $_SESSION['id_user']; ?>">
+                            <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user']; ?>">
                             <div class="col-md-4 col-md-offset-4">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Submit</button>

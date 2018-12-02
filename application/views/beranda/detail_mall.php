@@ -39,6 +39,14 @@
 						<?php echo $mall->tahun_berdiri; ?>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="2" class="col-md-12">
+						<center>
+							<h2>Parkir Tersisa</h2>
+							<h2><?php echo $lahan_parkir->parkir_tersedia; ?><h2>
+						</center>
+					</td>
+				</tr>
 			</table>
 		</div>
 	</div>

@@ -37,6 +37,7 @@ class Gerbang_model extends CI_Model{
             `mall`.`id_user`,
             `lokasi`.`alamat`,
             `lokasi`.`kode_pos`,
+            `gerbang_parkir`.id AS id_gerbang,
             `gerbang_parkir`.nama AS nama_gerbang,
             CONCAT('KELURAHAN ',`desa_kelurahan`.`name`,', KECAMATAN ',`kecamatan`.`name`,', ',`kabupaten_kota`.`name`,', PROVINSI ',`provinsi`.`name`) AS detail_lokasi
         FROM

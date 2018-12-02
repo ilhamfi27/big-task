@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2018 at 12:32 PM
+-- Generation Time: Dec 02, 2018 at 03:38 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -38,6 +38,13 @@ CREATE TABLE `biodata_customer` (
   `id_lokasi` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `biodata_customer`
+--
+
+INSERT INTO `biodata_customer` (`no_ktp`, `nama`, `tanggal_lahir`, `jenis_kelamin`, `nomor_telepon`, `id_user`, `id_lokasi`) VALUES
+('7623627', 'Jelema', '1999-12-01', 'L', '0987654678', 37, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +65,9 @@ CREATE TABLE `gerbang_parkir` (
 
 INSERT INTO `gerbang_parkir` (`id`, `nama`, `peruntukan`, `id_user`, `id_mall`) VALUES
 (1, 'Gerbang Utara 1', 'M', 29, 3),
-(3, 'Gerbang Utara 2', 'K', 31, 3);
+(3, 'Gerbang Utara 2', 'K', 31, 3),
+(6, 'Gerbang Selatan 1', 'M', 35, 4),
+(7, 'Gerbang Selatan 2', 'K', 36, 4);
 
 -- --------------------------------------------------------
 
@@ -78,7 +87,9 @@ CREATE TABLE `lokasi` (
 --
 
 INSERT INTO `lokasi` (`id`, `id_kelurahan`, `alamat`, `kode_pos`) VALUES
-(4, '3277020004', 'Jl. Gandawijaya No.1', '14410');
+(4, '3277020004', 'Jl. Gandawijaya No.1', '14410'),
+(5, '3273120004', 'Cimindi', '43872'),
+(6, '3273120005', 'Jl Lingga Putra', '14045');
 
 -- --------------------------------------------------------
 
@@ -102,7 +113,8 @@ CREATE TABLE `mall` (
 --
 
 INSERT INTO `mall` (`id`, `nama`, `no_telp`, `fax`, `tahun_berdiri`, `id_lokasi`, `id_user`, `kapasitas`) VALUES
-(3, 'Cimahi Mall', '022298394', '022234975', 2006, 4, 19, 0);
+(3, 'Cimahi Mall', '022298394', '022234975', 2006, 4, 19, 100),
+(4, 'BTC', '98749834', '9834759', 2001, 5, 32, 100);
 
 -- --------------------------------------------------------
 
@@ -112,7 +124,6 @@ INSERT INTO `mall` (`id`, `nama`, `no_telp`, `fax`, `tahun_berdiri`, `id_lokasi`
 
 CREATE TABLE `transaksi` (
   `id` int(5) NOT NULL,
-  `id_mall` int(5) NOT NULL,
   `id_gerbang` int(11) NOT NULL,
   `tanggal_waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,51 +132,33 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `id_mall`, `id_gerbang`, `tanggal_waktu`) VALUES
-(1, 3, 29, '2018-12-02 11:13:48'),
-(2, 3, 29, '2018-12-02 11:14:51'),
-(3, 3, 29, '2018-12-02 11:15:14'),
-(4, 3, 29, '2018-12-02 11:17:57'),
-(5, 3, 29, '2018-12-02 11:17:58'),
-(6, 3, 29, '2018-12-02 11:17:58'),
-(7, 3, 29, '2018-12-02 11:17:59'),
-(8, 3, 29, '2018-12-02 11:18:00'),
-(9, 3, 29, '2018-12-02 11:18:00'),
-(10, 3, 29, '2018-12-02 11:18:00'),
-(11, 3, 29, '2018-12-02 11:18:00'),
-(12, 3, 29, '2018-12-02 11:18:00'),
-(13, 3, 29, '2018-12-02 11:18:00'),
-(14, 3, 29, '2018-12-02 11:18:01'),
-(15, 3, 29, '2018-12-02 11:18:01'),
-(16, 3, 29, '2018-12-02 11:18:01'),
-(17, 3, 29, '2018-12-02 11:18:01'),
-(18, 3, 29, '2018-12-02 11:18:01'),
-(19, 3, 29, '2018-12-02 11:18:01'),
-(20, 3, 29, '2018-12-02 11:18:01'),
-(21, 3, 29, '2018-12-02 11:18:01'),
-(22, 3, 29, '2018-12-02 11:18:01'),
-(23, 3, 29, '2018-12-02 11:18:01'),
-(24, 3, 29, '2018-12-02 11:18:01'),
-(25, 3, 29, '2018-12-02 11:18:01'),
-(26, 3, 29, '2018-12-02 11:18:02'),
-(27, 3, 29, '2018-12-02 11:18:02'),
-(28, 3, 29, '2018-12-02 11:18:02'),
-(29, 3, 31, '2018-12-02 11:18:53'),
-(30, 3, 31, '2018-12-02 11:18:53'),
-(31, 3, 31, '2018-12-02 11:18:53'),
-(32, 3, 31, '2018-12-02 11:18:53'),
-(33, 3, 31, '2018-12-02 11:18:53'),
-(34, 3, 31, '2018-12-02 11:18:53'),
-(35, 3, 31, '2018-12-02 11:18:54'),
-(36, 3, 31, '2018-12-02 11:18:54'),
-(37, 3, 31, '2018-12-02 11:18:54'),
-(38, 3, 31, '2018-12-02 11:18:54'),
-(39, 3, 31, '2018-12-02 11:18:54'),
-(40, 3, 31, '2018-12-02 11:18:54'),
-(41, 3, 31, '2018-12-02 11:18:54'),
-(42, 3, 31, '2018-12-02 11:18:54'),
-(43, 3, 31, '2018-12-02 11:19:08'),
-(44, 3, 31, '2018-12-02 11:19:08');
+INSERT INTO `transaksi` (`id`, `id_gerbang`, `tanggal_waktu`) VALUES
+(35, 1, '2018-12-02 12:12:43'),
+(36, 1, '2018-12-02 12:12:59'),
+(37, 1, '2018-12-02 12:13:00'),
+(38, 1, '2018-12-02 12:13:00'),
+(39, 1, '2018-12-02 12:13:01'),
+(40, 3, '2018-12-02 12:13:02'),
+(41, 3, '2018-12-02 12:13:03'),
+(42, 6, '2018-12-02 12:32:17'),
+(43, 6, '2018-12-02 12:32:17'),
+(44, 6, '2018-12-02 12:32:18'),
+(45, 7, '2018-12-02 12:32:19'),
+(46, 7, '2018-12-02 12:32:20'),
+(47, 6, '2018-12-02 12:32:52'),
+(48, 6, '2018-12-02 12:32:53'),
+(49, 6, '2018-12-02 12:32:54'),
+(50, 6, '2018-12-02 12:32:55'),
+(51, 6, '2018-12-02 12:32:56'),
+(52, 6, '2018-12-02 12:32:56'),
+(53, 6, '2018-12-02 12:32:57'),
+(54, 7, '2018-12-02 12:32:58'),
+(55, 7, '2018-12-02 12:32:59'),
+(56, 7, '2018-12-02 12:33:00'),
+(57, 6, '2018-12-02 14:16:32'),
+(58, 6, '2018-12-02 14:16:33'),
+(59, 6, '2018-12-02 14:16:34'),
+(60, 6, '2018-12-02 14:16:38');
 
 -- --------------------------------------------------------
 
@@ -188,7 +181,11 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `status`, `join_date`) VALUES
 (19, 'mall1', 'efe6398127928f1b2e9ef3207fb82663', 'M', '2018-12-02'),
 (29, 'gerbang_utara_1', 'da6311784561fdb7a8887e22c22cb325', 'G', '2018-12-02'),
-(31, 'gerbang_utara_2', 'e16ffde555cea7dd96e119dccfcc734a', 'G', '2018-12-02');
+(31, 'gerbang_utara_2', 'e16ffde555cea7dd96e119dccfcc734a', 'G', '2018-12-02'),
+(32, 'mall2', 'efe6398127928f1b2e9ef3207fb82663', 'M', '2018-12-02'),
+(35, 'gerbang_selatan_1', 'c269bd40362fb92c5b800405445be560', 'G', '2018-12-02'),
+(36, 'gerbang_selatan_2', '7ed03ee267aa014c11ffdabfa8d0420a', 'G', '2018-12-02'),
+(37, 'customer1', 'efe6398127928f1b2e9ef3207fb82663', 'C', '2018-12-02');
 
 --
 -- Indexes for dumped tables
@@ -229,7 +226,7 @@ ALTER TABLE `mall`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_mall` (`id_mall`);
+  ADD KEY `id_gerbang` (`id_gerbang`);
 
 --
 -- Indexes for table `user`
@@ -245,31 +242,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `gerbang_parkir`
 --
 ALTER TABLE `gerbang_parkir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mall`
 --
 ALTER TABLE `mall`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
@@ -306,7 +303,7 @@ ALTER TABLE `mall`
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_mall`) REFERENCES `mall` (`id`);
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_gerbang`) REFERENCES `gerbang_parkir` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
