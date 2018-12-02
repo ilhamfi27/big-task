@@ -39,6 +39,7 @@ class Biodata_customer_model extends CI_Model{
                     biodata_customer.nomor_telepon,
                     lokasi.alamat,
                     lokasi.kode_pos,
+                    biodata_customer.id_user,
                     CONCAT('KELURAHAN ',`desa_kelurahan`.`name`,', KECAMATAN ',`kecamatan`.`name`,', ',`kabupaten_kota`.`name`,', PROVINSI ',`provinsi`.`name`) AS detail_lokasi
                 FROM biodata_customer
                 JOIN lokasi
@@ -53,5 +54,8 @@ class Biodata_customer_model extends CI_Model{
                 on(kabupaten_kota.id_provinsi =provinsi.id)";
 
         return $this->db->query($sql);
+    }
+    public function edit_profile($id){
+        
     }
 }
