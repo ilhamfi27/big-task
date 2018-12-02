@@ -50,6 +50,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
                 </div>
 				<div class="form-group">
+                    <label>Provinsi</label>
+                    <select name="id_provinsi" class="form-control" id="dropdown-provinsi" data-url="<?php echo site_url('lokasi/ajax_get_kab_kota'); ?>" placeholder="Provinsi" required>
+                        <option value="">-- Provinsi --</option>
+                        <?php foreach($provinsi as $row): ?>
+                        <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+				<div class="form-group">
+                    <label>Kabupaten/Kota</label>
+                    <select name="id_kab-kota" class="form-control" id="dropdown-kab-kota" data-url="<?php echo site_url('lokasi/ajax_get_kecamatan'); ?>" placeholder="Kabupaten/Kota" required>
+                        <option value="">-- Kabupaten/Kota --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kecamatan</label>
+                    <select name="id_kecamatan" class="form-control" id="dropdown-kecamatan" data-url="<?php echo site_url('lokasi/ajax_get_kelurahan'); ?>" placeholder="Kecamatan" required>
+                        <option value="">-- Kecamatan --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kelurahan</label>
+                    <select name="id_kelurahan" class="form-control" id="dropdown-kelurahan" placeholder="Kelurahan" required>
+                        <option value="">-- Kelurahan --</option>
+                    </select>
+                </div>
+				<div class="form-group">
                     <label>Alamat</label>
                     <textarea name="alamat" class="form-control" placeholder="Alamat" required></textarea>
                 </div>
@@ -67,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script src="<?php echo base_url('vendor/jquery/jquery-3.3.1.js'); ?>"></script>
 	<script src="<?php echo base_url('vendor/bootstrap/js/bootstrap.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/application.js'); ?>"></script>
 
 </body>
 </html>

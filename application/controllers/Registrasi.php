@@ -26,7 +26,8 @@ class Registrasi extends CI_Controller {
 	}
 	
 	public function regis_data_customer(){
-        $this->load->view('registrasi/regis_data_customer');
+		$data['provinsi'] = $this->lokasi->all_provinsi()->result();
+        $this->load->view('registrasi/regis_data_customer',$data);
 	}
 	
 	public function regis_data_mall(){
@@ -118,6 +119,7 @@ class Registrasi extends CI_Controller {
 		$nomor_telepon 	= $_POST['nomor_telepon'];
 		$username 		= $_POST['username'];
 		$status 		= $_POST['status'];
+		$id_lokasi		= $_POST['id_kelurahan'];
 
 		$id_user = $this->user->get_user_id(array('username' => $username, 'status' => $status))
 					->row()
@@ -130,7 +132,8 @@ class Registrasi extends CI_Controller {
 			'jenis_kelamin' => $jenis_kelamin,
 			'alamat' => $alamat,
 			'nomor_telepon' => $nomor_telepon,
-			'id_user' => $id_user
+			'id_user' => $id_user,
+			'id_lokasi' => $id_lokasi
 		);
 		
 		$success = $this->biodata_customer->create($data_biodata);

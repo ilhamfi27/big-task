@@ -14,7 +14,8 @@ class Biodata_customer_model extends CI_Model{
             `jenis_kelamin`,
             `alamat`,
             `nomor_telepon`,
-            `id_user`
+            `id_user`,
+            `id_lokasi`
         )
           VALUES
         (
@@ -24,7 +25,8 @@ class Biodata_customer_model extends CI_Model{
             '".$data['jenis_kelamin']."', 
             '".$data['alamat']."',
             '".$data['nomor_telepon']."',
-            '".$data['id_user']."'
+            '".$data['id_user']."',
+            '".$data['id_lokasi']."'
         )";
         $this->db->query($sql);
         return $this->db->affected_rows();
