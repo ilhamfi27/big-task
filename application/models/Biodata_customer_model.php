@@ -12,7 +12,6 @@ class Biodata_customer_model extends CI_Model{
             `nama`,
             `tanggal_lahir`,
             `jenis_kelamin`,
-            `alamat`,
             `nomor_telepon`,
             `id_user`,
             `id_lokasi`
@@ -23,12 +22,36 @@ class Biodata_customer_model extends CI_Model{
             '".$data['nama']."', 
             '".$data['tanggal_lahir']."', 
             '".$data['jenis_kelamin']."', 
-            '".$data['alamat']."',
             '".$data['nomor_telepon']."',
             '".$data['id_user']."',
             '".$data['id_lokasi']."'
         )";
         $this->db->query($sql);
         return $this->db->affected_rows();
+    }
+
+    public function get_user_data($id){
+        $sql ="SELECT  
+                    no_ktp,
+                    biodata_customer.nama AS nama,
+                    biodata_customer.tanggal_lahir,
+                    biodata_customer.jenis_kelamin,
+                    biodata_customer.nomor_telepon,
+                    lokasi.alamat,
+                    lokasi.kode_pos,
+                    CONCAT('KELURAHAN ',`desa_kelurahan`.`name`,', KECAMATAN ',`kecamatan`.`name`,', ',`kabupaten_kota`.`name`,', PROVINSI ',`provinsi`.`name`) AS detail_lokasi
+                FROM biodata_customer
+                JOIN lokasi
+                on(biodata_customer.id_lokasi =lokasi.id)
+                JOIN desa_kelurahan
+                on(desa_kelurahan.id= lokasi.id_kelurahan)
+                JOIN kecamatan
+                on(desa_kelurahan.id_kecamatan =kecamatan.id)
+                JOIN kabupaten_kota
+                on(kecamatan.id_kabupaten_kota =kabupaten_kota.id)
+                JOIN provinsi 
+                on(kabupaten_kota.id_provinsi =provinsi.id)";
+
+        return $this->db->query($sql);
     }
 }

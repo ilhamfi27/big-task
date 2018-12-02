@@ -31,7 +31,7 @@ class Beranda_mall extends CI_Controller{
 
     private function data_detail_mall(){
         $id_user = $_SESSION['id_user'];
-        $data['mall'] = $this->mall->get_data_mall_by_id($id_user)->row();
+        $data['mall'] = $this->mall->get_data_mall_by_id_user($id_user)->row();
         return $data;
     }
 }

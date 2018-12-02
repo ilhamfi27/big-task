@@ -154,7 +154,6 @@ class Registrasi extends CI_Controller {
 			'nama' => $nama,
 			'tanggal_lahir' => $tanggal_lahir,
 			'jenis_kelamin' => $jenis_kelamin,
-			'alamat' => $alamat,
 			'nomor_telepon' => $nomor_telepon,
 			'id_user' => $id_user,
 			'id_lokasi' => $id_lokasi
