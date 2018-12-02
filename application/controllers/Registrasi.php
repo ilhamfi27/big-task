@@ -130,13 +130,7 @@ class Registrasi extends CI_Controller {
 
 		$success = $this->lokasi->create($data_lokasi);
 
-		$where_lokasi = array(
-			'id_kelurahan' => $id_kelurahan,
-			'alamat' => $alamat,
-			'kode_pos' => $kode_pos
-		);
-
-		$id_lokasi = $this->lokasi->get_lokasi($where_lokasi)
+		$id_lokasi = $this->lokasi->get_lokasi($data_lokasi)
 					->row()
 					->id;
 
@@ -188,13 +182,7 @@ class Registrasi extends CI_Controller {
 
 		$success = $this->lokasi->create($data_lokasi);
 
-		$where_lokasi = array(
-			'id_kelurahan' => $id_kelurahan,
-			'alamat' => $alamat,
-			'kode_pos' => $kode_pos
-		);
-
-		$id_lokasi = $this->lokasi->get_lokasi($where_lokasi)
+		$id_lokasi = $this->lokasi->get_lokasi($data_lokasi)
 					->row()
 					->id;
 

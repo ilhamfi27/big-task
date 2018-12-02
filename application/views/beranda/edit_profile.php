@@ -108,7 +108,7 @@
 													</tr>
 													<tr>
 														<td>
-															<a href="<?php echo site_url('beranda/edit_profile/').$customer->id_user; ?>" class="btn btn-primary"> Edit Profile</a>
+															<input type="submit" name="submit" value="submit">
 														</td>
 													</tr>
 												</table>
