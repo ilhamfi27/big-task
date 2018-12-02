@@ -26,14 +26,17 @@ class Auth extends CI_Controller {
 		if($user_exist > 0) {
 			$data = $result->row();
 			$data_session = array(
-				'id_user' => $data->id,
-				'username' => $data->username
+				'id_user' 	=> $data->id,
+				'username' 	=> $data->username,
+				'status'	=> $data->status
 			);
 			$this->session->set_userdata($data_session);
 			if ($data->status == "C") {
 				redirect('beranda/index');
 			} else if ($data->status == "M") {
 				redirect('beranda_mall/index');
+			} else if ($data->status == "G") {
+				redirect('beranda_mall/gerbang_kendaraan');
 			}
 		} else {
 			redirect('auth/index');

@@ -73,6 +73,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <label>Fax</label>
                     <input type="text" name="fax" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Fax" required>
                 </div>
+				<div class="form-group">
+                    <label>Kapasitas Ruang Parkir</label>
+                    <input type="text" name="kapasitas" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Kapasitas" required>
+                </div>
 				<input type="hidden" name="username" value="<?php echo $_SESSION['session_username']; ?>">
 				<input type="hidden" name="status" value="<?php echo $_SESSION['session_status']; ?>">
 				<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Submit</button>

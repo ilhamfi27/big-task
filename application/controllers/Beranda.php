@@ -5,6 +5,7 @@ class Beranda extends CI_Controller{
 		parent::__construct();
 		$this->load->model('biodata_customer_model','customer');
 		$this->load->model('data_mall_model','mall');
+		$this->is_user_login();
 	}
 
     function index(){
@@ -23,6 +24,12 @@ class Beranda extends CI_Controller{
     	$this->load->view('beranda/header',$data);
         $this->load->view('beranda/detail_mall',$data);
     	$this->load->view('beranda/footer');
+	}
+	
+    private function is_user_login(){
+        if (empty($_SESSION['username'])) {
+            redirect('auth/index');
+        }
     }
     function edit_profile($id) {
         $id_user=$_SESSION['id_user'];

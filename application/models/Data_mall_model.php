@@ -13,6 +13,7 @@ class Data_mall_model extends CI_Model{
             `no_telp`,
             `fax`,
             `tahun_berdiri`,
+            `kapasitas`,
             `id_lokasi`,
             `id_user`
         )
@@ -22,6 +23,7 @@ class Data_mall_model extends CI_Model{
             '".$data['no_telp']."',
             '".$data['fax']."',
             '".$data['tahun_berdiri']."',
+            '".$data['kapasitas']."',
             '".$data['id_lokasi']."',
             '".$data['id_user']."'
         );
