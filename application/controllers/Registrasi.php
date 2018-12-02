@@ -116,12 +116,36 @@ class Registrasi extends CI_Controller {
 		$tanggal_lahir 	= $_POST['tanggal_lahir'];
 		$jenis_kelamin 	= $_POST['jenis_kelamin'];
 		$alamat 		= $_POST['alamat'];
+		$kode_pos		= $_POST['kode_pos'];
 		$nomor_telepon 	= $_POST['nomor_telepon'];
 		$username 		= $_POST['username'];
 		$status 		= $_POST['status'];
-		$id_lokasi		= $_POST['id_kelurahan'];
+		$id_kelurahan	= $_POST['id_kelurahan'];
 
-		$id_user = $this->user->get_user_id(array('username' => $username, 'status' => $status))
+		$data_lokasi = array(
+			'id_kelurahan' => $id_kelurahan,
+			'alamat' => $alamat,
+			'kode_pos' => $kode_pos
+		);
+
+		$success = $this->lokasi->create($data_lokasi);
+
+		$where_lokasi = array(
+			'id_kelurahan' => $id_kelurahan,
+			'alamat' => $alamat,
+			'kode_pos' => $kode_pos
+		);
+
+		$id_lokasi = $this->lokasi->get_lokasi($where_lokasi)
+					->row()
+					->id;
+
+		$where_user = array(
+			'username' => $username, 
+			'status' => $status
+		);
+
+		$id_user = $this->user->get_user_id($where_user)
 					->row()
 					->id;
 

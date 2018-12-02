@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2018 at 03:55 AM
+-- Generation Time: Dec 02, 2018 at 04:43 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -33,20 +33,10 @@ CREATE TABLE `biodata_customer` (
   `nama` varchar(50) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` char(1) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
   `nomor_telepon` varchar(14) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_lokasi` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `biodata_customer`
---
-
-INSERT INTO `biodata_customer` (`no_ktp`, `nama`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `nomor_telepon`, `id_user`, `id_lokasi`) VALUES
-('8273489', 'Budogol', '2018-12-01', 'L', 'Jl Lingga Putra', '0987654678', 10, 0),
-('8273487', 'yualinda', '1999-11-11', 'P', 'surabaya', '6789899', 15, 0),
-('82734810', 'Ilham Fadhilah', '1998-01-27', 'L', 'Jl Lingga Putra', '0987654678', 17, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -88456,14 +88446,6 @@ CREATE TABLE `lokasi` (
   `kode_pos` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `lokasi`
---
-
-INSERT INTO `lokasi` (`id`, `id_kelurahan`, `alamat`, `kode_pos`) VALUES
-(1, '3273070005', 'Jl Lingga Putra', '14045'),
-(2, '3273090002', 'sukabirus', '14014');
-
 -- --------------------------------------------------------
 
 --
@@ -88479,14 +88461,6 @@ CREATE TABLE `mall` (
   `id_lokasi` int(5) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mall`
---
-
-INSERT INTO `mall` (`id`, `nama`, `no_telp`, `fax`, `tahun_berdiri`, `id_lokasi`, `id_user`) VALUES
-(1, 'Makmur Mall', '0987654678', '987654678', 2000, 1, 13),
-(2, 'Sumber Sari Mall', '07345567778', '98798454', 1998, 2, 14);
 
 -- --------------------------------------------------------
 
@@ -88567,23 +88541,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `password`, `status`, `join_date`) VALUES
-(1, 'ilhamfi', 'efe6398127928f1b2e9ef3207fb82663', 'A', '0000-00-00'),
-(2, 'sherli', 'f34d07b202eaeadf913468e95d7fcb86', 'A', '0000-00-00'),
-(3, 'sherli', 'f34d07b202eaeadf913468e95d7fcb86', 'A', '0000-00-00'),
-(4, 'sherli', 'f34d07b202eaeadf913468e95d7fcb86', 'A', '0000-00-00'),
-(5, 'sherli', 'f34d07b202eaeadf913468e95d7fcb86', 'A', '0000-00-00'),
-(6, 'deboy', 'efe6398127928f1b2e9ef3207fb82663', 'A', '0000-00-00'),
-(10, 'customer1', 'efe6398127928f1b2e9ef3207fb82663', 'C', '2018-12-01'),
-(13, 'mall1', 'efe6398127928f1b2e9ef3207fb82663', 'M', '2018-12-01'),
-(14, 'mall2', 'efe6398127928f1b2e9ef3207fb82663', 'M', '2018-12-02'),
-(15, 'customer2', 'efe6398127928f1b2e9ef3207fb82663', 'C', '2018-12-02'),
-(17, 'customer3', 'efe6398127928f1b2e9ef3207fb82663', 'C', '2018-12-02');
-
---
 -- Indexes for dumped tables
 --
 
@@ -88591,7 +88548,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `status`, `join_date`) VALUES
 -- Indexes for table `biodata_customer`
 --
 ALTER TABLE `biodata_customer`
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_lokasi` (`id_lokasi`);
 
 --
 -- Indexes for table `desa_kelurahan`
@@ -88669,7 +88627,7 @@ ALTER TABLE `kendaraan`
 -- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mall`
@@ -88687,7 +88645,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -88697,7 +88655,8 @@ ALTER TABLE `user`
 -- Constraints for table `biodata_customer`
 --
 ALTER TABLE `biodata_customer`
-  ADD CONSTRAINT `biodata_customer_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `biodata_customer_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `biodata_customer_ibfk_2` FOREIGN KEY (`id_lokasi`) REFERENCES `lokasi` (`id`);
 
 --
 -- Constraints for table `desa_kelurahan`

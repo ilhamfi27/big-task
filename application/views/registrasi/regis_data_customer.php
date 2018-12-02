@@ -81,6 +81,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <textarea name="alamat" class="form-control" placeholder="Alamat" required></textarea>
                 </div>
 				<div class="form-group">
+                    <label>Kode Pos</label>
+                    <input type="text" name="kode_pos" value="<?php echo set_value(''); ?>" class="form-control" placeholder="Kode Pos" required>
+                </div>
+				<div class="form-group">
                     <label>Nomor Telepon</label>
                     <input type="text" name="nomor_telepon" class="form-control" placeholder="Nomor Telepon" required>
                 </div>
