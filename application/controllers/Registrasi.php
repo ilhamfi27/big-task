@@ -109,6 +109,39 @@ class Registrasi extends CI_Controller {
 		}
 	}
 
+	public function tambah_data_customer(){
+		$no_ktp 		= $_POST['no_ktp'];
+		$nama 			= $_POST['nama'];
+		$tanggal_lahir 	= $_POST['tanggal_lahir'];
+		$jenis_kelamin 	= $_POST['jenis_kelamin'];
+		$alamat 		= $_POST['alamat'];
+		$nomor_telepon 	= $_POST['nomor_telepon'];
+		$username 		= $_POST['username'];
+		$status 		= $_POST['status'];
+
+		$id_user = $this->user->get_user_id(array('username' => $username, 'status' => $status))
+					->row()
+					->id;
+
+		$data_biodata = array(
+			'no_ktp' => $no_ktp,
+			'nama' => $nama,
+			'tanggal_lahir' => $tanggal_lahir,
+			'jenis_kelamin' => $jenis_kelamin,
+			'alamat' => $alamat,
+			'nomor_telepon' => $nomor_telepon,
+			'id_user' => $id_user
+		);
+		
+		$success = $this->biodata_customer->create($data_biodata);
+		if ($success > 0) {
+			$this->session->unset_userdata(array('session_username', 'session_status'));
+			redirect('auth/index');	
+		} else {
+			$this->load->view('registrasi/regis_data_customer');
+		}
+	}
+
 	public function tambah_data_mall(){
 		$nama			= $_POST['nama'];
 		$id_kelurahan	= $_POST['id_kelurahan'];
@@ -157,7 +190,7 @@ class Registrasi extends CI_Controller {
 		);
 		$success = $this->mall->create($data_mall);
 		if ($success > 0) {
-			redirect('auth/login');
+			redirect('auth/index');
 		}
 	}
 }

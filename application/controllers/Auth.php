@@ -6,7 +6,6 @@ class Auth extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('user_model','user');
-		$this->load->helper(array('url'));
 		$this->load->library(array('form_validation'));
 	}
 
@@ -27,11 +26,15 @@ class Auth extends CI_Controller {
 		if($user_exist > 0) {
 			$data = $result->row();
 			$data_session = array(
-				'id' => $data->id,
+				'id_user' => $data->id,
 				'username' => $data->username
 			);
 			$this->session->set_userdata($data_session);
-			redirect('beranda/index');
+			if ($data->status == "C") {
+				redirect('beranda/index');
+			} else if ($data->status == "M") {
+				redirect('beranda_mall/index');
+			}
 		} else {
 			redirect('auth/index');
 		}

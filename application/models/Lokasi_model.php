@@ -59,7 +59,7 @@ class Lokasi_model extends CI_Model{
             `name`
         FROM
             `kabupaten_kota`
-        WHERE `province_id` = '$id_prov'
+        WHERE `id_provinsi` = '$id_prov'
         ";
         return $this->db->query($sql);
     }
@@ -71,7 +71,7 @@ class Lokasi_model extends CI_Model{
             `name`
         FROM
             `kecamatan`
-        WHERE `regency_id` = '$id_kab_kota'
+        WHERE `id_kabupaten_kota` = '$id_kab_kota'
         ";
         return $this->db->query($sql);
     }
@@ -83,7 +83,7 @@ class Lokasi_model extends CI_Model{
             `name`
         FROM
             `desa_kelurahan`
-        WHERE `district_id` = '$id_kab_kota'
+        WHERE `id_kecamatan` = '$id_kab_kota'
         ";
         return $this->db->query($sql);
     }
