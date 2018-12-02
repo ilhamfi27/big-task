@@ -28,6 +28,11 @@ class User_model extends CI_Model{
         return $this->db->affected_rows();
     }
 
+    public function create_and_get_id($data){
+        $this->db->insert('user',$data);
+        return $this->db->insert_id();
+    }
+
     public function cek_login($data){
         $sql = "
         SELECT

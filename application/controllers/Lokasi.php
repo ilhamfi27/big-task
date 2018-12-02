@@ -2,7 +2,7 @@
 class Lokasi extends CI_Controller{
     public function __construct() {
         parent::__construct();
-		$this->load->model('lokasi_model','lokasi');
+        $this->load->model('lokasi_model','lokasi');
     }
 
     public function ajax_get_kab_kota(){

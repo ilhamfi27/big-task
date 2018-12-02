@@ -37,8 +37,7 @@ class Lokasi_model extends CI_Model{
             `alamat` = '".$data['alamat']."' AND
             `kode_pos` = '".$data['kode_pos']."'
         ";
-        $affected_row = $this->db->query($sql);
-        return $affected_row;
+        return $this->db->query($sql);
     }
 
     public function all_provinsi() {

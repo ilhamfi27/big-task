@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Monitoring Mall - <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))); ?></title>
+    <title>
+        <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))) 
+        ." - "
+        .   ucwords(implode(" ", explode("_", $this->router->fetch_method()))); ?>
+    </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<?php echo site_url(); ?>vendor/bootstrap/css/bootstrap.min.css">
@@ -36,11 +40,19 @@
 
     <!-- Logo -->
     <a href="<?php echo site_url('beranda_mall/index') ?>" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
+    <?php if($_SESSION['status'] == "M"): ?>
+    <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>Adm</b></span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>Admin</b></span>
     </a>
+    <?php elseif($_SESSION['status'] == "G"): ?>
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>Grb</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Gerbang</b></span>
+    </a>
+    <?php endif; ?>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -55,16 +67,26 @@
                 <li class="dropdown user user-menu" >
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs"><?php echo $mall->nama; ?></span>
+                    <?php if($_SESSION['status'] == "M"): ?>
+                    <span class="hidden-xs"><?php echo $mall->nama; ?></span>
+                    <?php elseif($_SESSION['status'] == "G"): ?>
+                    <span class="hidden-xs"><?php echo $mall->nama_gerbang." - ".$mall->nama; ?></span>
+                    <?php endif; ?>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header" style="min-height:195px;">
+                            <?php if($_SESSION['status'] == "M"): ?>
                             <span class="fa fa-building" style="font-size: 72px;"></span>
-
+                            <?php elseif($_SESSION['status'] == "G"): ?>
+                            <span class="fa fa-car" style="font-size: 72px;"></span>
+                            <?php endif; ?>
                             <p>
+                                <?php if($_SESSION['status'] == "M"): ?>
                                 <?php echo $mall->nama; ?>
+                                <?php elseif($_SESSION['status'] == "G"): ?>
+                                <?php echo $mall->nama_gerbang." - ".$mall->nama; ?>
+                                <?php endif; ?>
                                 <small>Berdiri Sejak Tahun <?php echo $mall->tahun_berdiri; ?></small>
                                 <small><?php echo $mall->alamat.' '.ucwords(strtolower($mall->detail_lokasi)).' '.$mall->kode_pos; ?></small>
                             </p>
@@ -72,7 +94,9 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
+                                <?php if($_SESSION['status'] == "M"): ?>
                                 <a href="<?php echo site_url('beranda_mall/profil') ?>" class="btn btn-default btn-flat">Profile</a>
+                                <?php endif; ?>
                             </div>
                             <div class="pull-right">
                                 <a href="<?php echo site_url('auth/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
@@ -97,10 +121,18 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <span class="fa fa-building" style="font-size: 34px; color:#FFFFFF;"></span>
+            <?php if($_SESSION['status'] == "M"): ?>
+            <span class="fa fa-building" style="font-size: 30px; color:#FFFFFF;"></span>
+            <?php elseif($_SESSION['status'] == "G"): ?>
+            <span class="fa fa-car" style="font-size: 30px; color:#FFFFFF;"></span>
+            <?php endif; ?>
             </div>
             <div class="pull-left info">
-                <p><?php echo $mall->nama ?></p>
+                <?php if($_SESSION['status'] == "M"): ?>
+                <p><?php echo $mall->nama; ?></p>
+                <?php elseif($_SESSION['status'] == "G"): ?>
+                <p><?php echo $mall->nama_gerbang; ?></p>
+                <?php endif; ?>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -122,8 +154,10 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
+            <?php if($_SESSION['status'] == "M"): ?>
             <li><a href="<?php echo site_url('beranda_mall/gerbang_mall') ?>"><i class="fa fa-link"></i> <span>Gerbang Parkir</span></a></li>
-            <li><a href="<?php echo site_url('beranda_mall/kendaraan_pernah_singgah') ?>"><i class="fa fa-link"></i> <span>Kendaraan Pernah Singgah</span></a></li>
+            <li><a href="<?php echo site_url('beranda_mall/report') ?>"><i class="fa fa-link"></i> <span>Report</span></a></li>
+            <?php endif; ?>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

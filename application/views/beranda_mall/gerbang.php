@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">List <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))); ?></h3>
+                        <h3 class="box-title">List Gerbang Parkir</h3>
                     </div>
                     <div class="box-body">
                         
@@ -41,14 +41,32 @@
                 </div>
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Input <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))); ?></h3>
+                        <h3 class="box-title">Input Akun Gerbang Parkir</h3>
                     </div>
                     <div class="box-body">
                         <form role="form" action="<?php echo site_url('gerbang/tambah_gerbang'); ?>" method="post">
+                            <input type="hidden" name="id_mall" value="<?php echo $mall->id; ?>">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Nama Gerbang</label>
                                 <input type="text" name="nama"class="form-control" placeholder="Gerbang Utara 1">
+                            </div>
+                            <div class="form-group">
+                                <label>Peruntukan</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="peruntukan" value="M"> Masuk
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="peruntukan" value="K"> Keluar
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" placeholder="gerbang_utara_1">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary pull-right">Submit</button>

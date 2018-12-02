@@ -176,6 +176,7 @@ class Registrasi extends CI_Controller {
 		$tahun_berdiri	= $_POST['tahun_berdiri'];
 		$no_telp		= $_POST['no_telp'];
 		$fax			= $_POST['fax'];
+		$kapasitas		= $_POST['kapasitas'];
 		$username		= $_POST['username'];
 		$status			= $_POST['status'];
 
@@ -211,6 +212,7 @@ class Registrasi extends CI_Controller {
 			'tahun_berdiri' => $tahun_berdiri,
 			'no_telp' => $no_telp,
 			'fax' => $fax,
+			'kapasitas' => $kapasitas,
 			'id_lokasi' => $id_lokasi,
 			'id_user' => $id_user
 		);
