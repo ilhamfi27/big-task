@@ -51,11 +51,14 @@ class Biodata_customer_model extends CI_Model{
                 JOIN kabupaten_kota
                 on(kecamatan.id_kabupaten_kota =kabupaten_kota.id)
                 JOIN provinsi 
-                on(kabupaten_kota.id_provinsi =provinsi.id)";
+                on(kabupaten_kota.id_provinsi =provinsi.id)
+                WHERE `id_user` = ".$id."
+                ";
 
         return $this->db->query($sql);
     }
     public function edit_profile($id){
-        
+        // $sql
+
     }
 }

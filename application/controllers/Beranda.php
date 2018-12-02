@@ -35,8 +35,8 @@ class Beranda extends CI_Controller{
     }
     function edit_profile($id) {
         $id_user=$_SESSION['id_user'];
-        $customer['customer'] = $this->customer->get_user_data($id_user)->row();
-        $this->load->view('beranda/index',$data);
+        $data['customer'] = $this->customer->get_user_data($id_user)->row();
+        $this->load->view('beranda/edit_profile',$data);
         $this->load->view('beranda/footer');
     }
 }

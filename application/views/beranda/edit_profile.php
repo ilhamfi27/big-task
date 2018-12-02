@@ -53,66 +53,66 @@
 					  
 						<div class="padding">
 							<div class="full col-sm-12">
-								<div class="row">
-									<div class="col-sm-5">
-										<div class="panel panel-default">
-											<div class="panel-body">
-												<center><h3>Profil Anda</h3></center>
-												<table>
-													<tr>
-														<td></td>
-														<td>
-															<img src="1.png" width="100">
-														</td>
-													</tr>
-													<tr>
-														<td class="col-md-4"><label>Nama</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->nama; ?>
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="col-md-4"><label>No KTP</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->no_ktp ?>
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="col-md-4"><label>Tanggal Lahir</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->tanggal_lahir; ?>
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="col-md-4"><label>Jenis Kelamin</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->jenis_kelamin ?>
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="col-md-4"><label>No Tlp</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->nomor_telepon; ?>
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="col-md-4"><label>Detail Lokasi</label></td>
-														<td class="col-md-8">
-															<?php echo $customer->detail_lokasi ?>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<input type="submit" name="submit" value="submit">
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<center><h3>Profil Anda</h3></center>
+										<table class="table">
+											<tr>
+												<td></td>
+												<td>
+													<img src="1.png" width="100">
+												</td>
+											</tr>
+											<tr>
+												<td class="col-md-4"><label>Nama</label></td>
+												<td class="col-md-8">
+													<input type="text" name="nama" class="form-control" value="<?php echo $customer->nama; ?>">
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="col-md-4"><label>No KTP</label></td>
+												<td class="col-md-8">
+													<input type="text" name="no_ktp" class="form-control" value="<?php echo $customer->no_ktp;?>">
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="col-md-4"><label>Tanggal Lahir</label></td>
+												<td class="col-md-8">
+													<input type="text" name="tanggal_lahir" class="form-control" value="<?php echo $customer->tanggal_lahir ?>">
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="col-md-4"><label>Jenis Kelamin</label></td>
+												<td class="col-md-8">
+													<input type="text" name="jenis_kelamin"  class="form-control"value="<?php echo $customer->jenis_kelamin ?>">
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="col-md-4"><label>No Tlp</label></td>
+												<td class="col-md-8">
+													<input type="text" name="nomor_telepon" class="form-control" value="<?php echo $customer->nomor_telepon ?>">
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="col-md-4"><label>Detail Lokasi</label></td>
+												<td class="col-md-8">
+													<select>
+														<option>
+															
+														</option>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<input type="submit" name="submit" value="submit">
+												</td>
+											</tr>
+										</table>
 									</div>
 									
