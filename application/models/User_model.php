@@ -27,6 +27,19 @@ class User_model extends CI_Model{
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
+    
+    public function update_user($data,$id){
+        $sql = "
+        UPDATE
+            `monitoring_parkiran_mall`.`user`
+        SET
+            `username` = '".$data['username']."',
+            `password` = '".$data['password']."'
+        WHERE `id` = '".$id."';
+        ";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 
     public function create_and_get_id($data){
         $this->db->insert('user',$data);
@@ -61,5 +74,16 @@ class User_model extends CI_Model{
             `status` = '".$data['status']."'
         ";
         return $this->db->query($sql);
+    }
+
+    public function hapus_user($id){
+        $sql = "
+        DELETE
+            FROM
+                `monitoring_parkiran_mall`.`user`
+            WHERE `id` = '".$id."';
+        ";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
     }
 }

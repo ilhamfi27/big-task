@@ -53,4 +53,60 @@ class Gerbang_model extends CI_Model{
         ";
         return $this->db->query($sql);
     }
+
+    public function get_all_gerbang_by_mall($id_mall){
+        $sql = "
+        SELECT
+            `gerbang_parkir`.`id`,
+            `nama`,
+            `peruntukan`,
+            `user`.`id` AS id_user,
+            `username`
+        FROM
+            `monitoring_parkiran_mall`.`gerbang_parkir`
+        JOIN `user` ON (`user`.`id` = `gerbang_parkir`.`id_user`)
+        WHERE `gerbang_parkir`.`id_mall` = ".$id_mall."
+        ";
+        return $this->db->query($sql);
+    }
+
+    public function get_detail_gerbang($id){
+        $sql = "
+        SELECT
+            `gerbang_parkir`.`id`,
+            `nama`,
+            `peruntukan`,
+            `user`.`id` AS id_user,
+            `username`
+        FROM
+            `monitoring_parkiran_mall`.`gerbang_parkir`
+        JOIN `user` ON (`user`.`id` = `gerbang_parkir`.`id_user`)
+        WHERE `gerbang_parkir`.`id` = ".$id."
+        ";
+        return $this->db->query($sql);
+    }
+
+    public function update_gerbang($data,$id){
+        $sql = "
+        UPDATE
+            `monitoring_parkiran_mall`.`gerbang_parkir`
+        SET
+            `nama` = '".$data['nama']."',
+            `peruntukan` = '".$data['peruntukan']."'
+        WHERE `id` = '".$id."';
+        ";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_gerbang($id){
+        $sql = "
+        DELETE
+            FROM
+                `monitoring_parkiran_mall`.`gerbang_parkir`
+            WHERE `id` = '".$id."';
+        ";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }

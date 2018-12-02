@@ -26,15 +26,24 @@
                             <tr>
                                 <th class="col-md-1">No</th>
                                 <th>Nama</th>
+                                <th>Peruntukan</th>
                                 <th class="col-md-2">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $no = 1; ?>
+                            <?php foreach($gerbang as $row): ?>
                             <tr>
-                                <td class="col-md-1">No</td>
-                                <td>Nama</td>
-                                <td class="col-md-2">Aksi</td>
+                                <td class="col-md-1"><?php echo $no; ?></td>
+                                <td><?php echo $row->nama; ?></td>
+                                <td><?php echo $row->peruntukan == "M" ? "Masuk" : "Keluar"; ?></td>
+                                <td class="col-md-2">
+                                    <a class="btn btn-primary" href="<?php echo site_url('beranda_mall/edit_gerbang/').$row->id; ?>"><span class="fa fa-edit"></span></a>
+                                    <a class="btn btn-danger" href="<?php echo site_url('gerbang/delete/').$row->id; ?>" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')"><span class="fa fa-trash"></span></a>
+                                </td>
                             </tr>
+                            <?php $no++; ?>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

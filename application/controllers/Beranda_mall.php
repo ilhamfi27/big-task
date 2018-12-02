@@ -14,20 +14,24 @@ class Beranda_mall extends CI_Controller{
     }
 
     public function gerbang_mall(){
+        $id_user            = $_SESSION['id_user'];
+        $id_mall            = $this->mall->get_data_mall_by_id_user($id_user)->row()->id;
+        $data['gerbang']    = $this->gerbang->get_all_gerbang_by_mall($id_mall)->result();
         $this->load->view('resources/beranda_mall_header',$this->data_detail_mall());
-        $this->load->view('beranda_mall/gerbang');
+        $this->load->view('beranda_mall/gerbang',$data);
+        $this->load->view('resources/beranda_mall_footer');
+    }
+
+    public function edit_gerbang($id){
+        $data['gerbang'] = $this->gerbang->get_detail_gerbang($id)->row();
+        $this->load->view('resources/beranda_mall_header',$this->data_detail_mall());
+        $this->load->view('beranda_mall/edit_gerbang',$data);
         $this->load->view('resources/beranda_mall_footer');
     }
 
     public function gerbang_kendaraan(){
         $this->load->view('resources/beranda_mall_header',$this->data_detail_mall());
         $this->load->view('beranda_mall/gerbang_kendaraan');
-        $this->load->view('resources/beranda_mall_footer');
-    }
-
-    public function kendaraan_pernah_singgah(){
-        $this->load->view('resources/beranda_mall_header',$this->data_detail_mall());
-        $this->load->view('beranda_mall/kendaraan_pernah_singgah');
         $this->load->view('resources/beranda_mall_footer');
     }
 
