@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">List <?php echo ucwords($this->router->fetch_class()); ?></h3>
+                        <h3 class="box-title">List <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))); ?></h3>
                     </div>
                     <div class="box-body">
                         
@@ -41,7 +41,7 @@
                 </div>
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Input <?php echo ucwords($this->router->fetch_class()); ?></h3>
+                        <h3 class="box-title">Input <?php echo ucwords(implode(" ", explode("_", $this->router->fetch_class()))); ?></h3>
                     </div>
                     <div class="box-body">
                         <form role="form" action="<?php echo site_url('gerbang/tambah_gerbang'); ?>" method="post">
