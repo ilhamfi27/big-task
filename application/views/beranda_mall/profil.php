@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header container">
         <h1>
-            Profil
+            Mall
         </h1>
     </section>
 
@@ -12,14 +12,32 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Title Box</h3>
-                    </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-12">
-                                
+                                <table class="table">
+                                    <tr>
+                                        <td class="col-md-3">Nama</td>
+                                        <td><?php echo $mall->nama; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor Telepon</td>
+                                        <td><?php echo $mall->no_telp; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fax</td>
+                                        <td><?php echo $mall->fax; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tahun Berdiri</td>
+                                        <td><?php echo $mall->tahun_berdiri; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td><?php echo ucwords(strtolower($mall->detail_lokasi))." ".$mall->alamat." ".$mall->kode_pos;; ?></td>
+                                    </tr>
+                                </table>
                             </div>
                             <!-- /.col -->
                         </div>

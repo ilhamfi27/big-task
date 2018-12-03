@@ -45,4 +45,30 @@ class Transaksi_model extends CI_Model{
         ";
         return $this->db->query($sql);
     }
+
+    public function get_jumlah_pengunjung_group_by_date($id_mall,$gerbang){
+        $sql = "
+        SELECT
+            `mall`.`id`,
+            `mall`.`nama`,
+            `mall`.`no_telp`,
+            `mall`.`fax`,
+            `mall`.`tahun_berdiri`,
+            `mall`.`id_lokasi`,
+            `mall`.`id_user`,
+            `mall`.`kapasitas`,
+            `transaksi`.`id_gerbang`,
+            DATE_FORMAT(`transaksi`.`tanggal_waktu`, '%d %M %Y') AS tanggal_transaksi,
+            `gerbang_parkir`.`nama` AS nama_gerbang,
+            `gerbang_parkir`.`peruntukan`,
+            COUNT(*) AS jumlah_aksi
+        FROM
+            `monitoring_parkiran_mall`.`transaksi`
+        JOIN `gerbang_parkir` ON (`gerbang_parkir`.`id` = `transaksi`.`id_gerbang`)
+        JOIN `mall` ON (`mall`.`id` = `gerbang_parkir`.`id_mall`)
+        WHERE `mall`.`id` = ".$id_mall." AND `gerbang_parkir`.`peruntukan` = '".$gerbang."'
+        GROUP BY DATE(`transaksi`.`tanggal_waktu`)
+        ";
+        return $this->db->query($sql);
+    }
 }
